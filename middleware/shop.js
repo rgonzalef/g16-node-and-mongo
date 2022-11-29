@@ -6,15 +6,37 @@ const validationsShop = (req, res, next) => {
 
   const {
     id,
+    name,
+    description,
+    invoice_url,
+    isonline,
+    address,
+    phone_number,
+    contact_email
   } = req.body
 
   const schema = yup.object().shape({
     id: yup.number().required(),
+    name: yup.string().required(),
+    description: yup.string().required(),
+    invoice_url: yup.string().required(),
+    isonline: yup.boolean().required(),
+    address: yup.string().required(),
+    phone_number: number().required().positive(),
+    contact_email: yup.string().required()
+
   })
 
   schema
     .validate({
       id,
+      name,
+      description,
+      invoice_url,
+      isonline,
+      address,
+      phone_number,
+      contact_email
     })
     .then(function (valid) {
       isValid = valid
